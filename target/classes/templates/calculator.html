@@ -15,8 +15,8 @@
                     "sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"></script>
-    <script src="/static/jquery-3.6.1.js"></script>
-    <script src="/static/calculator.js"></script>
+    <script src="/js/jquery-3.6.1.js"></script>
+    <!--script src="/js/calculator.js"></script-->
     <!-- for styling -->
     <style>
         table {
@@ -57,28 +57,21 @@
         }
     </style>
 
-    <script type="text/javascript">
-        function doAjaxGet() {
-            let input = $('result').val();
-            console.log("result = " + input);
-
-            $.ajax({
-
-            })
-        }
-    </script>
 
 </head>
 <!-- create table -->
 
 <body>
+<div id="test_input"></div>
 <form th:action="@{/calculator}" method="get">
     <div th:if="${error != null}">
-        <span th:text="${error.toString()}"></span>
+        <span id="errorMessage" th:text="${error.toString()}"></span>
     </div>
     <table id="calcu">
         <tr>
-            <td colspan="3"><input type="text" id="result" value="" name="result" th:value="${result}"/></td>
+            <td colspan="3">
+                <input type="text" id="result" value="" name="result" th:value="${result}"/>
+            </td>
             <!-- clr() function will call clr to clear all value -->
             <td><input type="button" value="c" onclick="clr()"/></td>
         </tr>
@@ -127,9 +120,21 @@
         </tr>
 
     </table>
+
+    <div class="container">
+        <input type="button" id="like" th:value="${like_field}" onclick="likeFunction(0)"/>
+    </div>
 </form>
 
 <script>
+
+    function likeFunction(id) {
+        let like = jQuery(id);
+        console.log("likeValue: " + like);
+        like++;
+        jQuery(id);
+    }
+
     // Function that display value
     function dis(val) {
         document.getElementById("result").value += val

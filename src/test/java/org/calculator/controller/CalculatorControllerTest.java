@@ -45,13 +45,6 @@ public class CalculatorControllerTest {
                 .andExpect(status().isOk());
     }
 
-    //false-test на переход на другую страницу
-    @Test
-    public void testRedirect_False() throws Exception {
-        this.mockMvc.perform(get("/calculator"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection());
-    }
 
     //тест на дефолтный вывод сообщения, при переходе на сайт
     @Test
@@ -122,7 +115,7 @@ public class CalculatorControllerTest {
     }
 
 
-    /******************************************_Errors_expression_test_**********************************************/
+    /******************************************_isOk_expression_test_**********************************************/
     //проверка того, что на выходе получим целочисленное число
     @Test
     public void testIntegerValueResult_MultiplyDoubleInteger() throws Exception {

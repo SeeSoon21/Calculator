@@ -21,17 +21,18 @@ import java.util.regex.Pattern;
 public class CalculatorController {
     @Autowired
     private CalculatorService calculatorService;
+    private Integer like_field;
+    public CalculatorController() {
+        this.like_field = 0;
+    }
 
     @GetMapping
     public String getCalculator(@RequestParam(required = false) String result,
                                 Model model) {
+
         System.out.println("handledResult = " + result);
         StringBuilder error;
-        /*if (calculatorService.allSymbolsAreDigits(handledResult)) {
-            error = new StringBuilder("All symbols must be numeric!");
-            model.addAttribute("error", error.toString());
-            return "calculator";
-        }*/
+
         if (result == null) {
             System.out.println("null result = " + result);
             model.addAttribute("result", "Enter your expression!");
@@ -61,17 +62,8 @@ public class CalculatorController {
         }
 
 
+
+
     }
 
-
-
-    /*@PostMapping
-    public String postCalculator(@RequestParam("result") String result,
-                                 Model model) {
-        System.out.println("result: " + result);
-        model.addAttribute("result", result);
-        model.addAttribute("pog", "shvebra");
-
-        return "redirect:/calculator";
-    }*/
 }
